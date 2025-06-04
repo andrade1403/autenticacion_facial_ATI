@@ -19,31 +19,38 @@ container = db.get_container_client(CONTAINER_NAME)
 
 #Crear un usuario en la base de datos
 def createUser(user: User):
-    #Creamos el usuario en la base de datos
-    return container.create_item(user.model_dump())
+    try:
+        #Creamos el usuario en la base de datos
+        return (True, container.create_item(user.model_dump()))
+    
+    except Exception as e:
+        return (False, str(e))
 
 #Leer un usuario por ID
 def getUserById(user_id: str):
     try:
         #Buscamos el usuario por ID
         user = container.read_item(user_id, partition_key = user_id)
-        return User(**user)
-    
-    except Exception:
-        return {'error': 'Usuario no encontrado en la base de datos.'}
+        return (True, User(**user).model_dump())
+
+    except Exception as e:
+        return (False, str(e))
 
 #Borrar un usuario por ID
 def deleteUserById(user_id: str):
     try:
         #Borramos el usuario por ID
-        container.delete_item(user_id, partition_key = user_id)
+        return (True, container.delete_item(user_id, partition_key = user_id))
     
-    except Exception:
-        return {'error': 'Usuario no encontrado en la base de datos.'}
+    except Exception as e:
+        return (False, str(e))
 
 #Devolver una lista de usuarios
 def listUsers():
-    #Leemos todos los usuarios del contenedor
-    users = container.read_all_items()
+    try:
+        #Leemos todos los usuarios del contenedor
+        users = container.read_all_items()
+        return (True, [User(**user).model_dump() for user in users])
 
-    return [User(**user) for user in users]
+    except Exception as e:
+        return (False, str(e))
