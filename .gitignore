@@ -1,0 +1,57 @@
+# Entorno virtual
+venv/
+ENV/
+env/
+.venv/
+
+# Archivos de configuración del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Logs y salida
+*.log
+*.out
+
+# Archivos de entorno y configuración sensible
+.env
+.env.*
+
+# Archivos de instalación
+*.egg-info/
+dist/
+build/
+
+# Jupyter notebooks temporales
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Archivos de test
+.cache/
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# Docker
+*.pid
+*.pid.lock
+*.pidfile
+
+# Otros artefactos temporales
+*.bak
+*.swp
+*.tmp
+*.orig
