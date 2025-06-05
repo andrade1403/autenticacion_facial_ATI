@@ -1,21 +1,25 @@
 import os
 from app.models.users import User
 from azure.cosmos import CosmosClient
+from dotenv import load_dotenv
+
+#Cargar las variables de entorno desde el archivo .env
+load_dotenv()
 
 #Variables de entorno
-COSMOS_URL = os.getenv('COSMOS_DB_URL')
-COSMOS_KEY = os.getenv('COSMOS_DB_KEY')
-DATABASE_NAME = os.getenv('COSMOS_DB_NAME')
-CONTAINER_NAME = os.getenv('COSMOS_DB_CONTAINER', 'Usuarios')
+COSMOS_URL = os.getenv('COSMOS_URL')
+COSMOS_KEY = os.getenv('COSMOS_KEY')
+DATABASE_NAME = os.getenv('DATABASE_NAME')
+USERS_CONTAINER_NAME = os.getenv('USERS_CONTAINER_NAME', 'users')
 
 #Validamos que las variables de entorno necesarias esten definidas
-if not COSMOS_URL or not COSMOS_KEY or not DATABASE_NAME:
-    raise ValueError('Las variables de entorno COSMOS_DB_URL, COSMOS_DB_KEY y COSMOS_DB_NAME son necesarias.')
+if not COSMOS_URL or not COSMOS_KEY or not DATABASE_NAME or not USERS_CONTAINER_NAME:
+    raise ValueError('Las variables de entorno COSMOS_URL, COSMOS_KEY, DATABASE_NAME y USERS_CONTAINER_NAME son necesarias.')
 
 #Crear cliente de cosmos
 client = CosmosClient(COSMOS_URL, credential = COSMOS_KEY)
 db = client.get_database_client(DATABASE_NAME)
-container = db.get_container_client(CONTAINER_NAME)
+container = db.get_container_client(USERS_CONTAINER_NAME)
 
 #Crear un usuario en la base de datos
 def createUser(user: User):
