@@ -1,7 +1,7 @@
 import os
+from dotenv import load_dotenv
 from app.models.users import User
 from azure.cosmos import CosmosClient
-from dotenv import load_dotenv
 
 #Cargar las variables de entorno desde el archivo .env
 load_dotenv()
@@ -25,7 +25,7 @@ container = db.get_container_client(USERS_CONTAINER_NAME)
 def createUser(user: User):
     try:
         #Creamos el usuario en la base de datos
-        return (True, container.create_item(user.model_dump()))
+        return (True, container.create_item(user.model_dump(by_alias = True)))
     
     except Exception as e:
         return (False, str(e))

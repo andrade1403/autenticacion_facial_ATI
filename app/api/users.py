@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from app.services.db import getUserById, deleteUserById, listUsers
+from app.services.userDB import getUserById, deleteUserById, listUsers
 
 #Crear un router para manejar las rutas de usuarios
 router = APIRouter()
