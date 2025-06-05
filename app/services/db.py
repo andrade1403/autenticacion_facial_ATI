@@ -35,7 +35,7 @@ def getUserById(user_id: str):
     try:
         #Buscamos el usuario por ID
         user = container.read_item(user_id, partition_key = user_id)
-        return (True, User(**user).model_dump())
+        return (True, User(**user).model_dump(by_alias = True))
 
     except Exception as e:
         return (False, str(e))
@@ -54,7 +54,7 @@ def listUsers():
     try:
         #Leemos todos los usuarios del contenedor
         users = container.read_all_items()
-        return (True, [User(**user).model_dump() for user in users])
+        return (True, [User(**user).model_dump(by_alias = True) for user in users])
 
     except Exception as e:
         return (False, str(e))
