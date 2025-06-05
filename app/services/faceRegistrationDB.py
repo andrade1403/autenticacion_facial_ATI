@@ -40,21 +40,21 @@ def getFaceRegisterByUserId(user_id: str):
     except Exception as e:
         return (False, str(e))
 
-#Borrar un usuario por ID
-def deleteUserById(user_id: str):
+#Borrar un registro de rostro por ID
+def deleteUserById(face_register_id: str):
     try:
         #Borramos el usuario por ID
-        return (True, container.delete_item(user_id, partition_key = user_id))
+        return (True, container.delete_item(face_register_id, partition_key = face_register_id))
     
     except Exception as e:
         return (False, str(e))
 
-#Devolver una lista de usuarios
-def listUsers():
+#Devolver una lista de rostros registrados
+def listFacesRegister():
     try:
         #Leemos todos los usuarios del contenedor
-        users = container.read_all_items()
-        return (True, [User(**user).model_dump(by_alias = True) for user in users])
+        faces_register = container.read_all_items()
+        return (True, [FaceRegistration(**face_register).model_dump(by_alias = True) for face_register in faces_register])
 
     except Exception as e:
         return (False, str(e))
