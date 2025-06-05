@@ -1,10 +1,10 @@
 import cv2
 import tempfile
 import numpy as np
-from app.services.embedding import extractEmbedding
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, Depends, File
 from app.utils.verify_token import verify_token
+from app.services.embedding import extractEmbedding
 from app.models.registration import FaceRegistration
 from app.services.userDB import createUser, getUserById
 from app.services.faceRegistrationDB import createFaceRegistration
