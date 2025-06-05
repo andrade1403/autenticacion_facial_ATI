@@ -28,17 +28,17 @@ sys.path.append(os.path.abspath('face_sdk'))
 #Cargar modelo de deteccion
 faceDetModelLoader = FaceDetModelLoader(model_path, 'face_detection', config['face_detection'])
 det_model, det_cfg = faceDetModelLoader.load_model()
-faceDetModelHandler = FaceDetModelHandler(det_model, 'cuda:0', det_cfg)
+faceDetModelHandler = FaceDetModelHandler(det_model, 'cpu', det_cfg)
 
 #Cargar modelo de alineamiento
 faceAlignModelLoader = FaceAlignModelLoader(model_path, 'face_alignment', config['face_alignment'])
 align_model, align_cfg = faceAlignModelLoader.load_model()
-faceAlignModelHandler = FaceAlignModelHandler(align_model, 'cuda:0', align_cfg)
+faceAlignModelHandler = FaceAlignModelHandler(align_model, 'cpu', align_cfg)
 
 #Cargar modelo de reconocimiento
 faceRecModelLoader = FaceRecModelLoader(model_path, 'face_recognition', config['face_recognition'])
 rec_model, rec_cfg = faceRecModelLoader.load_model()
-faceRecModelHandler = FaceRecModelHandler(rec_model, 'cuda:0', rec_cfg)
+faceRecModelHandler = FaceRecModelHandler(rec_model, 'cpu', rec_cfg)
 
 #Carga modelo de recorte de imagen
 face_cropper = FaceRecImageCropper()
