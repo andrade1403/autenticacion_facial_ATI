@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from app.utils.verify_token import verify_token
-from app.services.userDB import createUser, getUserById, deleteUserById, listUsers
+from app.services.userDB import createUser, getUserById
+from app.services.faceRegistrationDB import createFaceRegistration
 
 #Crear un router para manejar las rutas de usuarios
 router = APIRouter()
@@ -18,4 +19,6 @@ def registerFace(token = Depends(verify_token)):
         #Validamos si hubo un error al crear el usuario
         if not success_create:
             return JSONResponse(status_code = 400, content = {'message': 'Error al crear el usuario', 'error': data_create})
+    
 
+    
