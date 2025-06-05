@@ -6,14 +6,14 @@
 import sys
 sys.path.append('.')
 import logging.config
-logging.config.fileConfig("config/logging.conf")
+logging.config.fileConfig("face_sdk/config/logging.conf")
 logger = logging.getLogger('api')
 
 import yaml
 import cv2
 import numpy as np
-from core.model_loader.face_detection.FaceDetModelLoader import FaceDetModelLoader
-from core.model_handler.face_detection.FaceDetModelHandler import FaceDetModelHandler
+from face_sdk.core.model_loader.face_detection.FaceDetModelLoader import FaceDetModelLoader
+from face_sdk.core.model_handler.face_detection.FaceDetModelHandler import FaceDetModelHandler
 
 with open('config/model_conf.yaml') as f:
     model_conf = yaml.load(f)

@@ -10,21 +10,21 @@ import logging
 mpl_logger = logging.getLogger('matplotlib')
 mpl_logger.setLevel(logging.WARNING)
 import logging.config
-logging.config.fileConfig("config/logging.conf")
+logging.config.fileConfig("face_sdk/config/logging.conf")
 logger = logging.getLogger('api')
 
 import yaml
 import cv2
 import numpy as np
 import torch
-from utils.show import show_bchw
-from utils.draw import draw_bchw
-from core.model_loader.face_parsing.FaceParsingModelLoader import FaceParsingModelLoader
-from core.model_handler.face_parsing.FaceParsingModelHandler import FaceParsingModelHandler
-from core.model_loader.face_detection.FaceDetModelLoader import FaceDetModelLoader
-from core.model_handler.face_detection.FaceDetModelHandler import FaceDetModelHandler
-from core.model_loader.face_alignment.FaceAlignModelLoader import FaceAlignModelLoader
-from core.model_handler.face_alignment.FaceAlignModelHandler import FaceAlignModelHandler
+from face_sdk.utils.show import show_bchw
+from face_sdk.utils.draw import draw_bchw
+from face_sdk.core.model_loader.face_parsing.FaceParsingModelLoader import FaceParsingModelLoader
+from face_sdk.core.model_handler.face_parsing.FaceParsingModelHandler import FaceParsingModelHandler
+from face_sdk.core.model_loader.face_detection.FaceDetModelLoader import FaceDetModelLoader
+from face_sdk.core.model_handler.face_detection.FaceDetModelHandler import FaceDetModelHandler
+from face_sdk.core.model_loader.face_alignment.FaceAlignModelLoader import FaceAlignModelLoader
+from face_sdk.core.model_handler.face_alignment.FaceAlignModelHandler import FaceAlignModelHandler
 
 with open('config/model_conf.yaml') as f:
     model_conf = yaml.load(f,Loader=yaml.FullLoader)

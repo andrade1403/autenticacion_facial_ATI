@@ -1,3 +1,5 @@
+import os
+import sys
 import yaml
 import numpy as np
 from face_sdk.core.model_loader.face_detection.FaceDetModelLoader import FaceDetModelLoader
@@ -17,8 +19,11 @@ def loadModelConfig(scene = 'non-mask'):
     return model_conf[scene]
 
 #Inicializar modelos
-model_path = 'models'
+model_path = 'face_sdk/models'
 config = loadModelConfig()
+
+#Agrega la carpeta raiz del repo (donde está face_sdk/models/) al sys.path
+sys.path.append(os.path.abspath('face_sdk'))
 
 #Cargar modelo de deteccion
 faceDetModelLoader = FaceDetModelLoader(model_path, 'face_detection', config['face_detection'])

@@ -8,7 +8,7 @@
 # https://github.com/FacePerceiver/facer/blob/main/facer/face_parsing/farl.py
 import functools
 import logging.config
-logging.config.fileConfig("config/logging.conf")
+logging.config.fileConfig("face_sdk/config/logging.conf")
 logger = logging.getLogger('sdk')
 
 import torch
@@ -18,8 +18,8 @@ from math import ceil
 from itertools import product as product
 import torch.backends.cudnn as cudnn
 
-from core.model_handler.BaseModelHandler import BaseModelHandler
-from utils.transform import *
+from face_sdk.core.model_handler.BaseModelHandler import BaseModelHandler
+from face_sdk.utils.transform import *
 
 pretrain_settings = {
     'lapa/448': {

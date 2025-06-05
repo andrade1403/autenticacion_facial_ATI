@@ -4,14 +4,14 @@
 @contact: jun21wangustc@gmail.com 
 """
 import logging.config
-logging.config.fileConfig("config/logging.conf")
+logging.config.fileConfig("face_sdk/config/logging.conf")
 logger = logging.getLogger('sdk')
 
 import numpy as np
 import torch
 
-from core.model_handler.BaseModelHandler import BaseModelHandler
-from utils.BuzException import *
+from face_sdk.core.model_handler.BaseModelHandler import BaseModelHandler
+from face_sdk.utils.BuzException import *
 
 class FaceRecModelHandler(BaseModelHandler):
     """Implementation of face recognition model handler

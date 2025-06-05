@@ -9,11 +9,11 @@ import logging
 mpl_logger = logging.getLogger('matplotlib')
 mpl_logger.setLevel(logging.WARNING)
 import logging.config
-logging.config.fileConfig("config/logging.conf")
+logging.config.fileConfig("face_sdk/config/logging.conf")
 logger = logging.getLogger('api')
 import cv2
 
-from core.image_cropper.arcface_cropper.FaceRecImageCropper import FaceRecImageCropper
+from face_sdk.core.image_cropper.arcface_cropper.FaceRecImageCropper import FaceRecImageCropper
 
 if __name__ == '__main__':
     image_path = 'api_usage/test_images/test1.jpg'
