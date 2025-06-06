@@ -25,7 +25,7 @@ container = db.get_container_client(FACES_CONTAINER_NAME)
 def createFaceRegistration(face_registration: FaceRegistration):
     try:
         #Creamos el registro de cara en la base de datos
-        return True, container.create_item(face_registration.model_dump(by_alias = True))
+        return True, container.create_item(face_registration.model_dump())
     
     except Exception as e:
         return (False, str(e))
@@ -35,7 +35,7 @@ def getFaceRegisterByUserId(user_id: str):
     try:
         #Buscamos los registros de cara por userID
         user_face_registration = container.read_item(user_id, partition_key = user_id)
-        return True, FaceRegistration(**user_face_registration).model_dump(by_alias = True)
+        return True, FaceRegistration(**user_face_registration).model_dump()
 
     except Exception as e:
         return False, str(e)
@@ -54,7 +54,7 @@ def listFacesRegister():
     try:
         #Leemos todos los usuarios del contenedor
         faces_register = container.read_all_items()
-        return True, [FaceRegistration(**face_register).model_dump(by_alias = True) for face_register in faces_register]
+        return True, [FaceRegistration(**face_register).model_dump() for face_register in faces_register]
 
     except Exception as e:
         return False, str(e)

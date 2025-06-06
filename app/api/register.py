@@ -6,20 +6,20 @@ from fastapi import APIRouter, Depends, File
 from app.utils.verify_token import verify_token
 from app.services.embedding import extractEmbedding
 from app.models.registration import FaceRegistration
-from app.services.userDB import createUser, getUserById
+from app.services.userDB import createUserDB, getUserByIdDB
 from app.services.faceRegistrationDB import createFaceRegistration
 
 #Crear un router para manejar las rutas de usuarios
 router = APIRouter()
 
-@router.post('/imageRegister')
+@router.post('/image')
 async def registerImageFace(token = Depends(verify_token), image_1 = File(...), image_2 = File(...), image_3 = File(...)):
     #Traemos el usuario de la base de datos usando el ID del token
-    success, data = getUserById(token['Id'])
+    success, data = getUserByIdDB(token['Id'])
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
-        success_create, data_create = createUser(id = token['Id'], name = token['FullName'], email = token['name'])
+        success_create, data_create = createUserDB(id = token['Id'], name = token['FullName'], email = token['name'])
 
         #Validamos si hubo un error al crear el usuario
         if not success_create:
@@ -60,14 +60,14 @@ async def registerImageFace(token = Depends(verify_token), image_1 = File(...), 
     
     return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_img})
 
-@router.post('/videoRegister')
+@router.post('/video')
 async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     #Traemos el usuario de la base de datos usando el ID del token
-    success, data = getUserById(token['Id'])
+    success, data = getUserByIdDB(token['Id'])
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
-        success_create, data_create = createUser(id = token['Id'], name = token['FullName'], email = token['name'])
+        success_create, data_create = createUserDB(id = token['Id'], name = token['FullName'], email = token['name'])
 
         #Validamos si hubo un error al crear el usuario
         if not success_create:

@@ -1,11 +1,12 @@
 from fastapi import APIRouter
+from app.models.users import User
 from fastapi.responses import JSONResponse
-from app.services.userDB import getUserById, deleteUserById, listUsers
+from app.services.userDB import createUserDB, getUserByIdDB, deleteUserByIdDB, listUsers
 
 #Crear un router para manejar las rutas de usuarios
 router = APIRouter()
 
-@router.get('/users')
+@router.get('/')
 def getUsers():
     #Traemos usuarios de la base de datos
     success, data = listUsers()
@@ -15,11 +16,22 @@ def getUsers():
         return JSONResponse(status_code = 400, content = {'message': 'Error al traer todos los usuarios', 'error': data})
     
     return JSONResponse(status_code = 200, content = {'message': 'Usuarios traidos correctamente', 'users': data})
+
+@router.post('/')
+def createUser(user: User):
+    #Creamos un usuario en la base de datos
+    success, data = createUserDB(user)
+
+    #Validamos si hubo un error al crear el usuario
+    if not success:
+        return JSONResponse(status_code = 400, content = {'message': 'Error al crear usuario.', 'error': data})
     
-@router.get('/users/{user_id}')
+    return JSONResponse(status_code = 200, content = {'message': 'Usuario creado exitosamente', 'users': data})
+    
+@router.get('/{user_id}')
 def getUserById(user_id: str):
     #Traemos un usuario por ID
-    success, data = getUserById(user_id)
+    success, data = getUserByIdDB(user_id)
 
     #Validamos si hubo un error al traer el usuario
     if not success:
@@ -27,10 +39,10 @@ def getUserById(user_id: str):
     
     return JSONResponse(status_code = 200, content = {'message': 'Usuario traido correctamente', 'user': data})
 
-@router.delete('/users/{user_id}')
+@router.delete('{user_id}')
 def deleteUserById(user_id: str):
     #Traemos un usuario por ID
-    success, data = deleteUserById(user_id)
+    success, data = deleteUserByIdDB(user_id)
 
     #Validamos si hubo un error al eliminar el usuario
     if not success:

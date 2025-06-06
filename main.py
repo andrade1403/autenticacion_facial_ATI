@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api import register, auth, users
+from app.api import register, auth, users, health
 
 #Creamos app
 app = FastAPI()
@@ -8,3 +8,4 @@ app = FastAPI()
 app.include_router(register.router, prefix = '/register')
 # app.include_router(auth.router, prefix = '/auth')
 app.include_router(users.router, prefix = '/users')
+app.include_router(health.router, prefix = '/health')
