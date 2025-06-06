@@ -13,7 +13,7 @@ from app.services.faceRegistrationDB import createFaceRegistration
 router = APIRouter()
 
 @router.post('/image')
-async def registerImageFace(token = Depends(verify_token), image_1 = File(...), image_2 = File(...), image_3 = File(...)):
+async def registerImageFace(token = Depends(verify_token), image = File(...)):
     #Traemos el usuario de la base de datos usando el ID del token
     success, data = getUserByIdDB(token['Id'])
 
@@ -26,37 +26,34 @@ async def registerImageFace(token = Depends(verify_token), image_1 = File(...), 
             return JSONResponse(status_code = 400, content = {'message': 'Error al crear el usuario', 'error': data_create})
     
     #Validamos que las imagenes no sean nulas
-    if not image_1 or not image_2 or not image_3:
+    if not image:
         return JSONResponse(status_code = 422, content = {'message': 'Debe enviar las tres imagenes del rostro', 'error': 'Imagenes nulas'})
 
-    #Iteramos sobre las imagenes recibidas
-    for image in [image_1, image_2, image_3]:
+    #Leemos la imagen del cuerpo de la peticion
+    contenido_imagen = await image.read()
 
-        #Leemos la imagen del cuerpo de la peticion
-        contenido_imagen = await image.read()
+    #Convertimos la imagen a un arreglo de numpy
+    imagen_np = np.frombuffer(contenido_imagen, np.uint8)
 
-        #Convertimos la imagen a un arreglo de numpy
-        imagen_np = np.frombuffer(contenido_imagen, np.uint8)
+    #Decodificamos la imagen
+    image_decode = cv2.imdecode(imagen_np, cv2.IMREAD_COLOR)
 
-        #Decodificamos la imagen
-        image_decode = cv2.imdecode(imagen_np, cv2.IMREAD_COLOR)
+    #Extraemos el vector de embedding de la imagen
+    success, embedding = extractEmbedding(image_decode)
 
-        #Extraemos el vector de embedding de la imagen
-        success, embedding = extractEmbedding(image_decode)
-
-        #Validamos si hubo un error al extraer el embedding
-        if not success:
-            return JSONResponse(status_code = 422, content = {'message': f'Error al procesar la imagen {image.filename}', 'error': embedding})
+    #Validamos si hubo un error al extraer el embedding
+    if not success:
+        return JSONResponse(status_code = 422, content = {'message': f'Error al procesar la imagen {image.filename}', 'error': embedding})
         
-        #Creamos objeto con el registro de cara
-        face_registration = FaceRegistration(userId = token['Id'], embeddingVector = embedding)
+    #Creamos objeto con el registro de cara
+    face_registration = FaceRegistration(userId = token['Id'], embeddingVector = embedding)
 
-        #Creamos el registro de cara en la base de datos
-        success, data_img = createFaceRegistration(face_registration)
+    #Creamos el registro de cara en la base de datos
+    success, data_img = createFaceRegistration(face_registration)
 
-        #Validamos si hubo un error al crear el registro de cara
-        if not success:
-            return JSONResponse(status_code = 400, content = {'message': f'Error al registrar el rostro {image}', 'error': data_img})
+    #Validamos si hubo un error al crear el registro de cara
+    if not success:
+        return JSONResponse(status_code = 400, content = {'message': f'Error al registrar el rostro {image}', 'error': data_img})
     
     return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_img})
 
