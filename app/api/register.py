@@ -14,7 +14,7 @@ from app.services.faceRegistrationDB import createFaceRegistrationDB
 router = APIRouter()
 
 @router.post('/image')
-async def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
+def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
     #Traemos el usuario de la base de datos usando el ID del token
     success, data = getUserByIdDB(token['Id'])
 
@@ -66,7 +66,8 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
-        success_create, data_create = createUserDB(id = token['Id'], name = token['FullName'], email = token['name'])
+        user = User(id = token['Id'], name = token['FullName'], email = token['name'])
+        success_create, data_create = createUserDB(user)
 
         #Validamos si hubo un error al crear el usuario
         if not success_create:
@@ -77,7 +78,7 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
         return JSONResponse(status_code = 422, content = {'message': 'Debe enviar un video', 'error': 'Video nulo'})
 
     #Leemos el video del cuerpo de la peticion
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as tmp:
+    with tempfile.NamedTemporaryFile(delete=False, suffix = '.mp4') as tmp:
         tmp.write(await video.read())
         tmp_path = tmp.name
 
@@ -100,6 +101,9 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     #Creamos objeto con el registro de cara
     face_registration = FaceRegistration(userId = token['Id'], embeddingVector = embedding)
 
+    #Modificamos la fecha de registro
+    face_registration.fechaRegistro = face_registration.fechaRegistro.strftime('%Y-%m-%d')
+
     #Creamos el registro de cara en la base de datos
     success, data_video = createFaceRegistrationDB(face_registration)
 
@@ -107,5 +111,4 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     if not success:
         return JSONResponse(status_code = 400, content = {'message': f'Error al registrar el rostro {video}', 'error': data_video})
     
-    return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_video})
-    
+    return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_video})    

@@ -1,4 +1,53 @@
-INFO 2025-06-06 11:26:38 _universal.py: 547] Response status: 200
+INFO 2025-06-06 11:41:23 FaceAlignModelLoader.py: 29] Successfully loaded the face landmark model!
+INFO 2025-06-06 11:41:23 FaceRecModelLoader.py: 16] Start to analyze the face recognition model, model path: face_sdk/models, model category: face_recognition，model name: face_recognition_1.0
+INFO 2025-06-06 11:41:23 BaseModelLoader.py: 34] Successfully parsed the model configuration file meta.json!
+INFO 2025-06-06 11:41:23 FaceRecModelLoader.py: 33] Successfully loaded the face recognition model!
+INFO 2025-06-06 11:41:23 _universal.py: 511] Request URL: 'https://faceatidb.documents.azure.com:443/'
+Request method: 'GET'
+Request headers:
+    'Cache-Control': 'no-cache'
+    'x-ms-version': 'REDACTED'
+    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
+    'x-ms-date': 'REDACTED'
+    'authorization': 'REDACTED'
+    'Accept': 'application/json'
+    'Content-Length': '0'
+    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
+No body was attached to the request
+DEBUG 2025-06-06 11:41:23 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb.documents.azure.com:443
+DEBUG 2025-06-06 11:41:24 connectionpool.py: 544] https://faceatidb.documents.azure.com:443 "GET / HTTP/1.1" 200 None
+INFO 2025-06-06 11:41:24 _universal.py: 547] Response status: 200
+Response headers:
+    'Cache-Control': 'no-store, no-cache'
+    'Pragma': 'no-cache'
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json'
+    'Content-Location': 'REDACTED'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'x-ms-max-media-storage-usage-mb': 'REDACTED'
+    'x-ms-media-storage-usage-mb': 'REDACTED'
+    'x-ms-databaseaccount-consumed-mb': 'REDACTED'
+    'x-ms-databaseaccount-reserved-mb': 'REDACTED'
+    'x-ms-databaseaccount-provisioned-mb': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-gatewayversion': 'REDACTED'
+    'Date': 'Fri, 06 Jun 2025 16:41:24 GMT'
+INFO 2025-06-06 11:41:24 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/users/'
+Request method: 'GET'
+Request headers:
+    'Cache-Control': 'no-cache'
+    'x-ms-version': 'REDACTED'
+    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
+    'x-ms-consistency-level': 'REDACTED'
+    'x-ms-date': 'REDACTED'
+    'authorization': 'REDACTED'
+    'Accept': 'application/json'
+    'Content-Length': '0'
+    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
+No body was attached to the request
+DEBUG 2025-06-06 11:41:24 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb-southcentralus.documents.azure.com:443
+DEBUG 2025-06-06 11:41:24 connectionpool.py: 544] https://faceatidb-southcentralus.documents.azure.com:443 "GET /dbs/MasterDB/colls/users/ HTTP/1.1" 200 None
+INFO 2025-06-06 11:41:24 _universal.py: 547] Response status: 200
 Response headers:
     'Cache-Control': 'no-store, no-cache'
     'Pragma': 'no-cache'
@@ -32,8 +81,8 @@ Response headers:
     'x-ms-cosmos-max-content-length': 'REDACTED'
     'x-ms-cosmos-internal-partition-id': 'REDACTED'
     'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:26:38 GMT'
-INFO 2025-06-06 11:26:38 _universal.py: 511] Request URL: 'https://faceatidb.documents.azure.com:443/'
+    'Date': 'Fri, 06 Jun 2025 16:41:25 GMT'
+INFO 2025-06-06 11:41:24 _universal.py: 511] Request URL: 'https://faceatidb.documents.azure.com:443/'
 Request method: 'GET'
 Request headers:
     'Cache-Control': 'no-cache'
@@ -45,9 +94,9 @@ Request headers:
     'Content-Length': '0'
     'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
 No body was attached to the request
-DEBUG 2025-06-06 11:26:38 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb.documents.azure.com:443
-DEBUG 2025-06-06 11:26:38 connectionpool.py: 544] https://faceatidb.documents.azure.com:443 "GET / HTTP/1.1" 200 None
-INFO 2025-06-06 11:26:38 _universal.py: 547] Response status: 200
+DEBUG 2025-06-06 11:41:24 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb.documents.azure.com:443
+DEBUG 2025-06-06 11:41:25 connectionpool.py: 544] https://faceatidb.documents.azure.com:443 "GET / HTTP/1.1" 200 None
+INFO 2025-06-06 11:41:25 _universal.py: 547] Response status: 200
 Response headers:
     'Cache-Control': 'no-store, no-cache'
     'Pragma': 'no-cache'
@@ -62,8 +111,8 @@ Response headers:
     'x-ms-databaseaccount-provisioned-mb': 'REDACTED'
     'Strict-Transport-Security': 'REDACTED'
     'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:26:38 GMT'
-INFO 2025-06-06 11:26:38 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/faces_registration/'
+    'Date': 'Fri, 06 Jun 2025 16:41:25 GMT'
+INFO 2025-06-06 11:41:25 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/faces_registration/'
 Request method: 'GET'
 Request headers:
     'Cache-Control': 'no-cache'
@@ -76,9 +125,9 @@ Request headers:
     'Content-Length': '0'
     'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
 No body was attached to the request
-DEBUG 2025-06-06 11:26:38 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb-southcentralus.documents.azure.com:443
-DEBUG 2025-06-06 11:26:39 connectionpool.py: 544] https://faceatidb-southcentralus.documents.azure.com:443 "GET /dbs/MasterDB/colls/faces_registration/ HTTP/1.1" 200 None
-INFO 2025-06-06 11:26:39 _universal.py: 547] Response status: 200
+DEBUG 2025-06-06 11:41:25 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb-southcentralus.documents.azure.com:443
+DEBUG 2025-06-06 11:41:25 connectionpool.py: 544] https://faceatidb-southcentralus.documents.azure.com:443 "GET /dbs/MasterDB/colls/faces_registration/ HTTP/1.1" 200 None
+INFO 2025-06-06 11:41:25 _universal.py: 547] Response status: 200
 Response headers:
     'Cache-Control': 'no-store, no-cache'
     'Pragma': 'no-cache'
@@ -112,58 +161,19 @@ Response headers:
     'x-ms-cosmos-max-content-length': 'REDACTED'
     'x-ms-cosmos-internal-partition-id': 'REDACTED'
     'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:26:38 GMT'
-INFO 2025-06-06 11:26:43 FaceDetModelLoader.py: 16] Start to analyze the face detection model, model path: face_sdk/models, model category: face_detection，model name: face_detection_1.0
-INFO 2025-06-06 11:26:43 BaseModelLoader.py: 34] Successfully parsed the model configuration file meta.json!
-INFO 2025-06-06 11:26:43 FaceDetModelLoader.py: 34] Successfully loaded the face detection model!
-INFO 2025-06-06 11:26:43 FaceAlignModelLoader.py: 16] Start to analyze the face landmark model, model path: face_sdk/models, model category: face_alignment，model name: face_alignment_1.0
-INFO 2025-06-06 11:26:43 BaseModelLoader.py: 34] Successfully parsed the model configuration file meta.json!
-INFO 2025-06-06 11:26:43 FaceAlignModelLoader.py: 29] Successfully loaded the face landmark model!
-INFO 2025-06-06 11:26:43 FaceRecModelLoader.py: 16] Start to analyze the face recognition model, model path: face_sdk/models, model category: face_recognition，model name: face_recognition_1.0
-INFO 2025-06-06 11:26:43 BaseModelLoader.py: 34] Successfully parsed the model configuration file meta.json!
-INFO 2025-06-06 11:26:43 FaceRecModelLoader.py: 33] Successfully loaded the face recognition model!
-INFO 2025-06-06 11:26:43 _universal.py: 511] Request URL: 'https://faceatidb.documents.azure.com:443/'
-Request method: 'GET'
-Request headers:
-    'Cache-Control': 'no-cache'
-    'x-ms-version': 'REDACTED'
-    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
-    'x-ms-date': 'REDACTED'
-    'authorization': 'REDACTED'
-    'Accept': 'application/json'
-    'Content-Length': '0'
-    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
-No body was attached to the request
-DEBUG 2025-06-06 11:26:43 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb.documents.azure.com:443
-DEBUG 2025-06-06 11:26:44 connectionpool.py: 544] https://faceatidb.documents.azure.com:443 "GET / HTTP/1.1" 200 None
-INFO 2025-06-06 11:26:44 _universal.py: 547] Response status: 200
-Response headers:
-    'Cache-Control': 'no-store, no-cache'
-    'Pragma': 'no-cache'
-    'Transfer-Encoding': 'chunked'
-    'Content-Type': 'application/json'
-    'Content-Location': 'REDACTED'
-    'Server': 'Microsoft-HTTPAPI/2.0'
-    'x-ms-max-media-storage-usage-mb': 'REDACTED'
-    'x-ms-media-storage-usage-mb': 'REDACTED'
-    'x-ms-databaseaccount-consumed-mb': 'REDACTED'
-    'x-ms-databaseaccount-reserved-mb': 'REDACTED'
-    'x-ms-databaseaccount-provisioned-mb': 'REDACTED'
-    'Strict-Transport-Security': 'REDACTED'
-    'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:26:43 GMT'
-INFO 2025-06-06 11:26:44 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/users/'
-Request method: 'GET'
-Request headers:
-    'Cache-Control': 'no-cache'
-    'x-ms-version': 'REDACTED'
-    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
-    'x-ms-consistency-level': 'REDACTED'
-    'x-ms-date': 'REDACTED'
-    'authorization': 'REDACTED'
-    'Accept': 'application/json'
-    'Content-Length': '0'
-    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
-No body was attached to the request
-DEBUG 2025-06-06 11:26:44 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb-southcentralus.documents.azure.com:443
-DEBUG 2025-06-06 11:26:44 connectionpool.py: 544] https://faceatidb-southcentralus.documents.azure.com:443 "GET /dbs/MasterDB/colls/users/ HTTP/1.1" 200 None
+    'Date': 'Fri, 06 Jun 2025 16:41:25 GMT'
+DEBUG 2025-06-06 11:42:00 multipart.py: 626] Calling on_part_begin with no data
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_header_field with data[54:73]
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_header_value with data[75:120]
+DEBUG 2025-06-06 11:42:00 multipart.py: 626] Calling on_header_end with no data
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_header_field with data[122:134]
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_header_value with data[136:145]
+DEBUG 2025-06-06 11:42:00 multipart.py: 626] Calling on_header_end with no data
+DEBUG 2025-06-06 11:42:00 multipart.py: 626] Calling on_headers_finished with no data
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_part_data with data[149:131221]
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_part_data with data[0:148193]
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_part_data with data[0:1]
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_part_data with data[148194:262144]
+DEBUG 2025-06-06 11:42:00 multipart.py: 623] Calling on_part_data with data[0:236301]
+DEBUG 2025-06-06 11:42:00 multipart.py: 626] Calling on_part_end with no data
+DEBUG 2025-06-06 11:42:00 multipart.py: 626] Calling on_end with no data
