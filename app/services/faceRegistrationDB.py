@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
-from azure.cosmos import CosmosClient
+from azure.cosmos import CosmosClient, PartitionKey
 from app.models.registration import FaceRegistration
+from azure.cosmos.exceptions import CosmosResourceNotFoundError
 
 #Cargar las variables de entorno desde el archivo .env
 load_dotenv()
@@ -19,19 +20,29 @@ if not COSMOS_URL or not COSMOS_KEY or not DATABASE_NAME or not FACES_CONTAINER_
 #Crear cliente de cosmos
 client = CosmosClient(COSMOS_URL, credential = COSMOS_KEY)
 db = client.get_database_client(DATABASE_NAME)
-container = db.get_container_client(FACES_CONTAINER_NAME)
+
+try:
+    container = db.get_container_client(FACES_CONTAINER_NAME)
+    # Forzamos una llamada para verificar si realmente existe
+    container.read()
+
+except CosmosResourceNotFoundError:
+    container = db.create_container_if_not_exists(
+        id=FACES_CONTAINER_NAME,
+        partition_key=PartitionKey(path="/id")
+    )
 
 #Crear un usuario en la base de datos
-def createFaceRegistration(face_registration: FaceRegistration):
+def createFaceRegistrationDB(face_registration: FaceRegistration):
     try:
         #Creamos el registro de cara en la base de datos
         return True, container.create_item(face_registration.model_dump())
     
     except Exception as e:
-        return (False, str(e))
+        return False, str(e)
 
 #Leer registros de cara por ID
-def getFaceRegisterByUserId(user_id: str):
+def getFaceRegisterByUserIdDB(user_id: str):
     try:
         #Buscamos los registros de cara por userID
         user_face_registration = container.read_item(user_id, partition_key = user_id)
@@ -41,7 +52,7 @@ def getFaceRegisterByUserId(user_id: str):
         return False, str(e)
 
 #Borrar un registro de rostro por ID
-def deleteUserById(face_register_id: str):
+def deleteFaceRegisterByIdDB(face_register_id: str):
     try:
         #Borramos el usuario por ID
         return True, container.delete_item(face_register_id, partition_key = face_register_id)

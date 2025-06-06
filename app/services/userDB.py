@@ -1,9 +1,7 @@
 import os
-import uuid
 from dotenv import load_dotenv
 from app.models.users import User
-from azure.cosmos import PartitionKey
-from azure.cosmos import CosmosClient
+from azure.cosmos import CosmosClient, PartitionKey
 from azure.cosmos.exceptions import CosmosResourceNotFoundError
 
 #Cargar las variables de entorno desde el archivo .env
@@ -37,11 +35,8 @@ except CosmosResourceNotFoundError:
 #Crear un usuario en la base de datos
 def createUserDB(user: User):
     try:
-        #Recibimos el usuario y lo volvemos diccionario
-        user_dict = user.model_dump()
-
         #Creamos el usuario en la base de datos
-        return True, container.create_item(user_dict)
+        return True, container.create_item(user.model_dump())
     
     except Exception as e:
         return False, str(e)

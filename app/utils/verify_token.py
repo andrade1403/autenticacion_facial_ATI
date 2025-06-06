@@ -16,15 +16,16 @@ security = HTTPBearer()
 
 def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
     #Se declara que el token es un string
+    print('Verificando token...')
     token = credentials.credentials
 
     try:
         #Decodificamos y validamos la firma
-        token_decode = jwt.decode(token, SECRET_KEY, algorithms = [ALGORITHM])
+        token_decode = jwt.decode(token, SECRET_KEY, algorithms = [ALGORITHM], audience = 'app')
         return token_decode
     
-    except JWTError:
+    except JWTError as e:
         raise HTTPException(
             status_code = status.HTTP_401_UNAUTHORIZED,
-            detail = 'Token inválido o expirado',
+            detail = f'Token inválido: {str(e)}',
             headers = {'WWW-Authenticate': 'Bearer'})

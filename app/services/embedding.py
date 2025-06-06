@@ -60,6 +60,9 @@ def extractEmbedding(archivo, score_threshold = 0.85):
         #Alineamiento
         landmarks = faceAlignModelHandler.inference_on_image(archivo, best_box)
 
+        #Extraemos los landmarks para recorte
+        landmarks = landmarks[:5]
+        
         #Validamos si se obtuvieron los landmarks
         if landmarks is None or landmarks.shape != (5, 2):
             return False, 'No se pudieron obtener los landmarks'
