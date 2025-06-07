@@ -24,3 +24,15 @@ class DBConnection:
             )
         
         return container
+    
+    def deleteContainer(self, container_name):
+        try:
+            #Intentamos eliminar el contenedor
+            self.db.delete_container(container_name)
+            return True, f'Contenedor {container_name} eliminado correctamente'
+        
+        except CosmosResourceNotFoundError:
+            return False, f'El contenedor {container_name} no existe'
+        
+        except Exception as e:
+            return False, str(e)

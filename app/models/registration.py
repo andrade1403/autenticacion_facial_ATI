@@ -1,7 +1,7 @@
 import uuid
 from typing import List
 from pydantic import BaseModel, Field
-from datetime import datetime, timezone
+from datetime import datetime
 
 class FaceRegistration(BaseModel):
     id: str = Field(default_factory = lambda: str(uuid.uuid4()))

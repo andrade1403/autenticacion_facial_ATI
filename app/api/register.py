@@ -30,7 +30,7 @@ def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
-        user = User(id = token['Id'], name = token['FullName'], email = token['name'])
+        user = User(id = token['Id'], name = token['FullName'], email = token[list(token.keys())[0]])
         success_create, data_create = user_service.createUserDB(user)
 
         #Validamos si hubo un error al crear el usuario
@@ -57,15 +57,12 @@ def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
     #Creamos objeto con el registro de cara
     face_registration = FaceRegistration(userId = token['Id'], embeddingVector = embedding)
 
-    #Modificamos la fecha de registro
-    face_registration.fechaRegistro = datetime.strftime(face_registration.fechaRegistro, '%Y-%m-%d')
-
     #Creamos el registro de cara en la base de datos
     success, data_img = faces_service.createFaceRegistrationDB(face_registration)
-
+    print(data_img)
     #Validamos si hubo un error al crear el registro de cara
     if not success:
-        return JSONResponse(status_code = 400, content = {'message': f'Error al registrar el rostro', 'error': data_img})
+        return JSONResponse(status_code = 400, content = {'message': 'Error al registrar el rostro', 'error': data_img})
     
     return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_img})
 
@@ -76,7 +73,7 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
-        user = User(id = token['Id'], name = token['FullName'], email = token['name'])
+        user = User(id = token['Id'], name = token['FullName'], email = token[list(token.keys())[0]])
         success_create, data_create = user_service.createUserDB(user)
 
         #Validamos si hubo un error al crear el usuario
@@ -133,3 +130,27 @@ def getRegisterFaces():
         return JSONResponse(status_code = 400, content = {'message': 'Error al traer todos los usuarios con rostros registrados', 'error': data})
     
     return JSONResponse(status_code = 200, content = {'message': 'Usuarios registrados con rostro traidos correctamente', 'faces': data})
+
+@router.delete('/faces/delete')
+def deleteFaceRegister():
+    #Borramos el contenedor de rostros registrados
+    success, data = DBConnection().deleteContainer('faces_registration')
+    success, data = DBConnection().deleteContainer('users')
+
+    #Validamos si hubo un error al borrar el contenedor
+    if not success:
+        return JSONResponse(status_code = 400, content = {'message': 'Error al borrar el contenedor de rostros registrados', 'error': data})
+    
+    return JSONResponse(status_code = 200, content = {'message': 'Contenedor de rostros registrados borrado correctamente', 'data': data})
+
+@router.get('/faces/user/{user_id}')
+def getFaceRegisterByUserId(user_id: str, token = Depends(verify_token)):
+    #Traemos los registros de cara por ID de usuario
+    success, data = faces_service.getFaceRegisterByUserIdDB(user_id)
+
+    #Validamos si hubo un error al traer los registros de cara
+    if not success:
+        return JSONResponse(status_code = 400, content = {'message': f'Error al traer los registros de cara del usuario {user_id}', 'error': data})
+    
+    return JSONResponse(status_code = 200, content = {'message': f'Registros de cara del usuario {user_id} traidos correctamente', 'faces': data})
+
