@@ -35,7 +35,8 @@ class FaceRegistrationCRUDService:
         try:
             #Leemos todos los usuarios del contenedor
             faces_register = self.container.read_all_items()
-            return True, [FaceRegistration(**face_register).model_dump() for face_register in faces_register]
+            print([FaceRegistration(**face).model_dump() for face in faces_register])
+            return True, [FaceRegistration(**face).model_dump() for face in faces_register]
 
         except Exception as e:
             return False, str(e)

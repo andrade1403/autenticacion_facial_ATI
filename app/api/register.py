@@ -1,14 +1,15 @@
 import cv2
 import tempfile
 import numpy as np
+from datetime import datetime
 from app.models.users import User
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, Depends, File
 from app.utils.containers import DBConnection
+from app.services.userDB import UserCRUDService
 from app.utils.verify_token import verify_token
 from app.services.embedding import extractEmbedding
 from app.models.registration import FaceRegistration
-from app.services.userDB import UserCRUDService
 from app.services.faceRegistrationDB import FaceRegistrationCRUDService
 
 #Crear un router para manejar las rutas de usuarios
@@ -57,7 +58,7 @@ def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
     face_registration = FaceRegistration(userId = token['Id'], embeddingVector = embedding)
 
     #Modificamos la fecha de registro
-    face_registration.fechaRegistro = face_registration.fechaRegistro.strftime('%Y-%m-%d')
+    face_registration.fechaRegistro = datetime.strftime(face_registration.fechaRegistro, '%Y-%m-%d')
 
     #Creamos el registro de cara en la base de datos
     success, data_img = faces_service.createFaceRegistrationDB(face_registration)
@@ -111,7 +112,7 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     face_registration = FaceRegistration(userId = token['Id'], embeddingVector = embedding)
 
     #Modificamos la fecha de registro
-    face_registration.fechaRegistro = face_registration.fechaRegistro.strftime('%Y-%m-%d')
+    face_registration.fechaRegistro = datetime.strftime(face_registration.fechaRegistro, '%Y-%m-%d')
 
     #Creamos el registro de cara en la base de datos
     success, data_video = faces_service.createFaceRegistrationDB(face_registration)
@@ -120,4 +121,15 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     if not success:
         return JSONResponse(status_code = 400, content = {'message': f'Error al registrar el rostro {video}', 'error': data_video})
     
-    return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_video})    
+    return JSONResponse(status_code = 200, content = {'message': 'Rostro registrado correctamente', 'data': data_video})
+
+@router.get('/faces')
+def getRegisterFaces():
+    #Traemos usuarios con rostros registrados de la base de datos
+    success, data = faces_service.listFacesRegister()
+   
+    #Validamos si hubo un error al traer los usuarios
+    if not success:
+        return JSONResponse(status_code = 400, content = {'message': 'Error al traer todos los usuarios con rostros registrados', 'error': data})
+    
+    # return JSONResponse(status_code = 200, content = {'message': 'Usuarios registrados con rostro traidos correctamente', 'faces': data})
