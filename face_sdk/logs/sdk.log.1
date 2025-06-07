@@ -1,55 +1,68 @@
-INFO 2025-06-06 11:42:48 FaceAlignModelLoader.py: 16] Start to analyze the face landmark model, model path: face_sdk/models, model category: face_alignment，model name: face_alignment_1.0
-INFO 2025-06-06 11:42:48 BaseModelLoader.py: 34] Successfully parsed the model configuration file meta.json!
-INFO 2025-06-06 11:42:48 FaceAlignModelLoader.py: 29] Successfully loaded the face landmark model!
-INFO 2025-06-06 11:42:48 FaceRecModelLoader.py: 16] Start to analyze the face recognition model, model path: face_sdk/models, model category: face_recognition，model name: face_recognition_1.0
-INFO 2025-06-06 11:42:48 BaseModelLoader.py: 34] Successfully parsed the model configuration file meta.json!
-INFO 2025-06-06 11:42:48 FaceRecModelLoader.py: 33] Successfully loaded the face recognition model!
-INFO 2025-06-06 11:42:48 _universal.py: 511] Request URL: 'https://faceatidb.documents.azure.com:443/'
-Request method: 'GET'
-Request headers:
-    'Cache-Control': 'no-cache'
-    'x-ms-version': 'REDACTED'
-    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
-    'x-ms-date': 'REDACTED'
-    'authorization': 'REDACTED'
-    'Accept': 'application/json'
-    'Content-Length': '0'
-    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
-No body was attached to the request
-DEBUG 2025-06-06 11:42:48 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb.documents.azure.com:443
-DEBUG 2025-06-06 11:42:49 connectionpool.py: 544] https://faceatidb.documents.azure.com:443 "GET / HTTP/1.1" 200 None
-INFO 2025-06-06 11:42:49 _universal.py: 547] Response status: 200
+INFO 2025-06-07 07:17:11 _universal.py: 547] Response status: 201
 Response headers:
     'Cache-Control': 'no-store, no-cache'
     'Pragma': 'no-cache'
     'Transfer-Encoding': 'chunked'
     'Content-Type': 'application/json'
-    'Content-Location': 'REDACTED'
     'Server': 'Microsoft-HTTPAPI/2.0'
-    'x-ms-max-media-storage-usage-mb': 'REDACTED'
-    'x-ms-media-storage-usage-mb': 'REDACTED'
-    'x-ms-databaseaccount-consumed-mb': 'REDACTED'
-    'x-ms-databaseaccount-reserved-mb': 'REDACTED'
-    'x-ms-databaseaccount-provisioned-mb': 'REDACTED'
     'Strict-Transport-Security': 'REDACTED'
+    'x-ms-activity-id': 'REDACTED'
+    'x-ms-last-state-change-utc': 'REDACTED'
+    'etag': '"430154ed-0000-0500-0000-68442dc70000"'
+    'x-ms-resource-quota': 'REDACTED'
+    'x-ms-resource-usage': 'REDACTED'
+    'x-ms-schemaversion': 'REDACTED'
+    'lsn': 'REDACTED'
+    'x-ms-request-charge': 'REDACTED'
+    'x-ms-alt-content-path': 'REDACTED'
+    'x-ms-content-path': 'REDACTED'
+    'x-ms-quorum-acked-lsn': 'REDACTED'
+    'x-ms-current-write-quorum': 'REDACTED'
+    'x-ms-current-replica-set-size': 'REDACTED'
+    'x-ms-documentdb-partitionkeyrangeid': 'REDACTED'
+    'x-ms-xp-role': 'REDACTED'
+    'x-ms-global-Committed-lsn': 'REDACTED'
+    'x-ms-number-of-read-regions': 'REDACTED'
+    'x-ms-transport-request-id': 'REDACTED'
+    'x-ms-cosmos-llsn': 'REDACTED'
+    'x-ms-cosmos-quorum-acked-llsn': 'REDACTED'
+    'x-ms-session-token': 'REDACTED'
+    'x-ms-request-duration-ms': 'REDACTED'
+    'x-ms-serviceversion': 'REDACTED'
+    'x-ms-cosmos-physical-partition-id': 'REDACTED'
+    'x-ms-cosmos-internal-partition-id': 'REDACTED'
     'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:42:48 GMT'
-INFO 2025-06-06 11:42:49 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/users/'
+    'Date': 'Sat, 07 Jun 2025 12:17:11 GMT'
+DEBUG 2025-06-07 07:17:28 multipart.py: 626] Calling on_part_begin with no data
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_header_field with data[54:73]
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_header_value with data[75:120]
+DEBUG 2025-06-07 07:17:28 multipart.py: 626] Calling on_header_end with no data
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_header_field with data[122:134]
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_header_value with data[136:145]
+DEBUG 2025-06-07 07:17:28 multipart.py: 626] Calling on_header_end with no data
+DEBUG 2025-06-07 07:17:28 multipart.py: 626] Calling on_headers_finished with no data
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_part_data with data[0:65536]
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_part_data with data[0:194560]
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_part_data with data[0:133120]
+DEBUG 2025-06-07 07:17:28 multipart.py: 623] Calling on_part_data with data[0:236301]
+DEBUG 2025-06-07 07:17:28 multipart.py: 626] Calling on_part_end with no data
+DEBUG 2025-06-07 07:17:28 multipart.py: 626] Calling on_end with no data
+INFO 2025-06-07 07:17:28 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/users/docs/b3cb944b-472f-4600-8e27-d135d38352e8/'
 Request method: 'GET'
 Request headers:
     'Cache-Control': 'no-cache'
     'x-ms-version': 'REDACTED'
     'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
     'x-ms-consistency-level': 'REDACTED'
+    'x-ms-session-token': 'REDACTED'
+    'x-ms-documentdb-partitionkey': 'REDACTED'
     'x-ms-date': 'REDACTED'
     'authorization': 'REDACTED'
     'Accept': 'application/json'
     'Content-Length': '0'
     'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
 No body was attached to the request
-DEBUG 2025-06-06 11:42:49 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb-southcentralus.documents.azure.com:443
-DEBUG 2025-06-06 11:42:49 connectionpool.py: 544] https://faceatidb-southcentralus.documents.azure.com:443 "GET /dbs/MasterDB/colls/users/ HTTP/1.1" 200 None
-INFO 2025-06-06 11:42:49 _universal.py: 547] Response status: 200
+INFO 2025-06-07 07:17:29 _universal.py: 547] Response status: 200
 Response headers:
     'Cache-Control': 'no-store, no-cache'
     'Pragma': 'no-cache'
@@ -60,10 +73,10 @@ Response headers:
     'Strict-Transport-Security': 'REDACTED'
     'x-ms-activity-id': 'REDACTED'
     'x-ms-last-state-change-utc': 'REDACTED'
-    'etag': '"00001b00-0000-0500-0000-684235ee0000"'
+    'etag': '"320249a6-0000-0500-0000-68424fe70000"'
+    'x-ms-resource-quota': 'REDACTED'
+    'x-ms-resource-usage': 'REDACTED'
     'x-ms-schemaversion': 'REDACTED'
-    'collection-partition-index': 'REDACTED'
-    'collection-service-index': 'REDACTED'
     'lsn': 'REDACTED'
     'x-ms-request-charge': 'REDACTED'
     'x-ms-alt-content-path': 'REDACTED'
@@ -80,105 +93,124 @@ Response headers:
     'x-ms-request-duration-ms': 'REDACTED'
     'x-ms-serviceversion': 'REDACTED'
     'x-ms-cosmos-physical-partition-id': 'REDACTED'
-    'x-ms-cosmos-max-content-length': 'REDACTED'
     'x-ms-cosmos-internal-partition-id': 'REDACTED'
     'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:42:49 GMT'
-INFO 2025-06-06 11:42:49 _universal.py: 511] Request URL: 'https://faceatidb.documents.azure.com:443/'
-Request method: 'GET'
-Request headers:
-    'Cache-Control': 'no-cache'
-    'x-ms-version': 'REDACTED'
-    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
-    'x-ms-date': 'REDACTED'
-    'authorization': 'REDACTED'
-    'Accept': 'application/json'
-    'Content-Length': '0'
-    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
-No body was attached to the request
-DEBUG 2025-06-06 11:42:49 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb.documents.azure.com:443
-DEBUG 2025-06-06 11:42:50 connectionpool.py: 544] https://faceatidb.documents.azure.com:443 "GET / HTTP/1.1" 200 None
-INFO 2025-06-06 11:42:50 _universal.py: 547] Response status: 200
-Response headers:
-    'Cache-Control': 'no-store, no-cache'
-    'Pragma': 'no-cache'
-    'Transfer-Encoding': 'chunked'
-    'Content-Type': 'application/json'
-    'Content-Location': 'REDACTED'
-    'Server': 'Microsoft-HTTPAPI/2.0'
-    'x-ms-max-media-storage-usage-mb': 'REDACTED'
-    'x-ms-media-storage-usage-mb': 'REDACTED'
-    'x-ms-databaseaccount-consumed-mb': 'REDACTED'
-    'x-ms-databaseaccount-reserved-mb': 'REDACTED'
-    'x-ms-databaseaccount-provisioned-mb': 'REDACTED'
-    'Strict-Transport-Security': 'REDACTED'
-    'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:42:49 GMT'
-INFO 2025-06-06 11:42:50 _universal.py: 511] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/faces_registration/'
-Request method: 'GET'
+    'Date': 'Sat, 07 Jun 2025 12:17:29 GMT'
+INFO 2025-06-07 07:17:29 _universal.py: 508] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/faces_registration/docs/'
+Request method: 'POST'
 Request headers:
     'Cache-Control': 'no-cache'
     'x-ms-version': 'REDACTED'
     'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
     'x-ms-consistency-level': 'REDACTED'
+    'x-ms-session-token': 'REDACTED'
+    'x-ms-documentdb-partitionkey': 'REDACTED'
     'x-ms-date': 'REDACTED'
     'authorization': 'REDACTED'
+    'Content-Type': 'application/json'
     'Accept': 'application/json'
-    'Content-Length': '0'
+    'Content-Length': '10906'
     'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
-No body was attached to the request
-DEBUG 2025-06-06 11:42:50 connectionpool.py: 1049] Starting new HTTPS connection (1): faceatidb-southcentralus.documents.azure.com:443
-DEBUG 2025-06-06 11:42:50 connectionpool.py: 544] https://faceatidb-southcentralus.documents.azure.com:443 "GET /dbs/MasterDB/colls/faces_registration/ HTTP/1.1" 200 None
-INFO 2025-06-06 11:42:50 _universal.py: 547] Response status: 200
+A body is sent with the request
+INFO 2025-06-07 07:17:30 _universal.py: 547] Response status: 201
 Response headers:
     'Cache-Control': 'no-store, no-cache'
     'Pragma': 'no-cache'
     'Transfer-Encoding': 'chunked'
     'Content-Type': 'application/json'
-    'Content-Location': 'REDACTED'
     'Server': 'Microsoft-HTTPAPI/2.0'
     'Strict-Transport-Security': 'REDACTED'
     'x-ms-activity-id': 'REDACTED'
     'x-ms-last-state-change-utc': 'REDACTED'
-    'etag': '"00002000-0000-0500-0000-68423b210000"'
+    'etag': '"43010df0-0000-0500-0000-68442dda0000"'
+    'x-ms-resource-quota': 'REDACTED'
+    'x-ms-resource-usage': 'REDACTED'
     'x-ms-schemaversion': 'REDACTED'
-    'collection-partition-index': 'REDACTED'
-    'collection-service-index': 'REDACTED'
     'lsn': 'REDACTED'
     'x-ms-request-charge': 'REDACTED'
     'x-ms-alt-content-path': 'REDACTED'
     'x-ms-content-path': 'REDACTED'
+    'x-ms-quorum-acked-lsn': 'REDACTED'
+    'x-ms-current-write-quorum': 'REDACTED'
+    'x-ms-current-replica-set-size': 'REDACTED'
     'x-ms-documentdb-partitionkeyrangeid': 'REDACTED'
     'x-ms-xp-role': 'REDACTED'
     'x-ms-global-Committed-lsn': 'REDACTED'
     'x-ms-number-of-read-regions': 'REDACTED'
-    'x-ms-item-lsn': 'REDACTED'
     'x-ms-transport-request-id': 'REDACTED'
     'x-ms-cosmos-llsn': 'REDACTED'
-    'x-ms-cosmos-item-llsn': 'REDACTED'
+    'x-ms-cosmos-quorum-acked-llsn': 'REDACTED'
     'x-ms-session-token': 'REDACTED'
     'x-ms-request-duration-ms': 'REDACTED'
     'x-ms-serviceversion': 'REDACTED'
     'x-ms-cosmos-physical-partition-id': 'REDACTED'
-    'x-ms-cosmos-max-content-length': 'REDACTED'
     'x-ms-cosmos-internal-partition-id': 'REDACTED'
     'x-ms-gatewayversion': 'REDACTED'
-    'Date': 'Fri, 06 Jun 2025 16:42:50 GMT'
-DEBUG 2025-06-06 11:42:56 multipart.py: 626] Calling on_part_begin with no data
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_header_field with data[54:73]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_header_value with data[75:120]
-DEBUG 2025-06-06 11:42:56 multipart.py: 626] Calling on_header_end with no data
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_header_field with data[122:134]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_header_value with data[136:145]
-DEBUG 2025-06-06 11:42:56 multipart.py: 626] Calling on_header_end with no data
-DEBUG 2025-06-06 11:42:56 multipart.py: 626] Calling on_headers_finished with no data
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[149:65685]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[0:213729]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[0:1]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[213730:262144]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[0:262144]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[0:2160]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[0:1]
-DEBUG 2025-06-06 11:42:56 multipart.py: 623] Calling on_part_data with data[2161:39693]
-DEBUG 2025-06-06 11:42:56 multipart.py: 626] Calling on_part_end with no data
-DEBUG 2025-06-06 11:42:56 multipart.py: 626] Calling on_end with no data
+    'Date': 'Sat, 07 Jun 2025 12:17:29 GMT'
+INFO 2025-06-07 07:17:37 _universal.py: 508] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/users/docs/'
+Request method: 'POST'
+Request headers:
+    'Cache-Control': 'no-cache'
+    'x-ms-version': 'REDACTED'
+    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
+    'x-ms-consistency-level': 'REDACTED'
+    'x-ms-session-token': 'REDACTED'
+    'x-ms-documentdb-partitionkey': 'REDACTED'
+    'x-ms-date': 'REDACTED'
+    'authorization': 'REDACTED'
+    'Content-Type': 'application/json'
+    'Accept': 'application/json'
+    'Content-Length': '90'
+    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
+A body is sent with the request
+INFO 2025-06-07 07:17:37 _universal.py: 547] Response status: 201
+Response headers:
+    'Cache-Control': 'no-store, no-cache'
+    'Pragma': 'no-cache'
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-activity-id': 'REDACTED'
+    'x-ms-last-state-change-utc': 'REDACTED'
+    'etag': '"bd02df16-0000-0500-0000-68442de10000"'
+    'x-ms-resource-quota': 'REDACTED'
+    'x-ms-resource-usage': 'REDACTED'
+    'x-ms-schemaversion': 'REDACTED'
+    'lsn': 'REDACTED'
+    'x-ms-request-charge': 'REDACTED'
+    'x-ms-alt-content-path': 'REDACTED'
+    'x-ms-content-path': 'REDACTED'
+    'x-ms-quorum-acked-lsn': 'REDACTED'
+    'x-ms-current-write-quorum': 'REDACTED'
+    'x-ms-current-replica-set-size': 'REDACTED'
+    'x-ms-documentdb-partitionkeyrangeid': 'REDACTED'
+    'x-ms-xp-role': 'REDACTED'
+    'x-ms-global-Committed-lsn': 'REDACTED'
+    'x-ms-number-of-read-regions': 'REDACTED'
+    'x-ms-transport-request-id': 'REDACTED'
+    'x-ms-cosmos-llsn': 'REDACTED'
+    'x-ms-cosmos-quorum-acked-llsn': 'REDACTED'
+    'x-ms-session-token': 'REDACTED'
+    'x-ms-request-duration-ms': 'REDACTED'
+    'x-ms-serviceversion': 'REDACTED'
+    'x-ms-cosmos-physical-partition-id': 'REDACTED'
+    'x-ms-cosmos-internal-partition-id': 'REDACTED'
+    'x-ms-gatewayversion': 'REDACTED'
+    'Date': 'Sat, 07 Jun 2025 12:17:37 GMT'
+INFO 2025-06-07 07:19:30 _universal.py: 508] Request URL: 'https://faceatidb-southcentralus.documents.azure.com:443/dbs/MasterDB/colls/users/docs/'
+Request method: 'POST'
+Request headers:
+    'Cache-Control': 'no-cache'
+    'x-ms-version': 'REDACTED'
+    'x-ms-documentdb-query-iscontinuationexpected': 'REDACTED'
+    'x-ms-consistency-level': 'REDACTED'
+    'x-ms-session-token': 'REDACTED'
+    'x-ms-documentdb-partitionkey': 'REDACTED'
+    'x-ms-date': 'REDACTED'
+    'authorization': 'REDACTED'
+    'Content-Type': 'application/json'
+    'Accept': 'application/json'
+    'Content-Length': '90'
+    'User-Agent': 'azsdk-python-cosmos/4.6.0 Python/3.11.9 (Windows-10-10.0.26100-SP0)'
+A body is sent with the request

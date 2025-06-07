@@ -1,15 +1,22 @@
 from fastapi import APIRouter
 from app.models.users import User
 from fastapi.responses import JSONResponse
-from app.services.userDB import createUserDB, getUserByIdDB, deleteUserByIdDB, listUsers
+from app.utils.containers import DBConnection
+from app.services.userDB import UserCRUDService
 
 #Crear un router para manejar las rutas de usuarios
 router = APIRouter()
 
+#Creamos instancia de variables de entorno
+container = DBConnection().getContainer('users')
+
+#Creamos una instancia del servicio de CRUD de usuarios
+user_service = UserCRUDService(container)
+
 @router.get('/')
 def getUsers():
     #Traemos usuarios de la base de datos
-    success, data = listUsers()
+    success, data = user_service.listUsers()
 
     #Validamos si hubo un error al traer los usuarios
     if not success:
@@ -20,7 +27,7 @@ def getUsers():
 @router.post('/')
 def createUser(user: User):
     #Creamos un usuario en la base de datos
-    success, data = createUserDB(user)
+    success, data = user_service.createUserDB(user)
 
     #Validamos si hubo un error al crear el usuario
     if not success:
@@ -31,7 +38,7 @@ def createUser(user: User):
 @router.get('/{user_id}')
 def getUserById(user_id: str):
     #Traemos un usuario por ID
-    success, data = getUserByIdDB(user_id)
+    success, data = user_service.getUserByIdDB(user_id)
 
     #Validamos si hubo un error al traer el usuario
     if not success:
@@ -42,7 +49,7 @@ def getUserById(user_id: str):
 @router.delete('{user_id}')
 def deleteUserById(user_id: str):
     #Traemos un usuario por ID
-    success, data = deleteUserByIdDB(user_id)
+    success, data = user_service.deleteUserByIdDB(user_id)
 
     #Validamos si hubo un error al eliminar el usuario
     if not success:

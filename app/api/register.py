@@ -4,24 +4,33 @@ import numpy as np
 from app.models.users import User
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, Depends, File
+from app.utils.containers import DBConnection
 from app.utils.verify_token import verify_token
 from app.services.embedding import extractEmbedding
 from app.models.registration import FaceRegistration
-from app.services.userDB import createUserDB, getUserByIdDB
-from app.services.faceRegistrationDB import createFaceRegistrationDB
+from app.services.userDB import UserCRUDService
+from app.services.faceRegistrationDB import FaceRegistrationCRUDService
 
 #Crear un router para manejar las rutas de usuarios
 router = APIRouter()
 
+#Creamos instancia de variables de entorno
+container_users = DBConnection().getContainer('users')
+container_faces = DBConnection().getContainer('faces_registration')
+
+#Creamos una instancia del servicio de CRUD de rostros registrados
+user_service = UserCRUDService(container_users)
+faces_service = FaceRegistrationCRUDService(container_faces)
+
 @router.post('/image')
 def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
     #Traemos el usuario de la base de datos usando el ID del token
-    success, data = getUserByIdDB(token['Id'])
+    success, data = user_service.getUserByIdDB(token['Id'])
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
         user = User(id = token['Id'], name = token['FullName'], email = token['name'])
-        success_create, data_create = createUserDB(user)
+        success_create, data_create = user_service.createUserDB(user)
 
         #Validamos si hubo un error al crear el usuario
         if not success_create:
@@ -51,7 +60,7 @@ def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
     face_registration.fechaRegistro = face_registration.fechaRegistro.strftime('%Y-%m-%d')
 
     #Creamos el registro de cara en la base de datos
-    success, data_img = createFaceRegistrationDB(face_registration)
+    success, data_img = faces_service.createFaceRegistrationDB(face_registration)
 
     #Validamos si hubo un error al crear el registro de cara
     if not success:
@@ -62,12 +71,12 @@ def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
 @router.post('/video')
 async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     #Traemos el usuario de la base de datos usando el ID del token
-    success, data = getUserByIdDB(token['Id'])
+    success, data = user_service.getUserByIdDB(token['Id'])
 
     if not success:
         #Creamos el usuario si no existe en la base de datos
         user = User(id = token['Id'], name = token['FullName'], email = token['name'])
-        success_create, data_create = createUserDB(user)
+        success_create, data_create = user_service.createUserDB(user)
 
         #Validamos si hubo un error al crear el usuario
         if not success_create:
@@ -105,7 +114,7 @@ async def registerVideoFace(token = Depends(verify_token), video = File(...)):
     face_registration.fechaRegistro = face_registration.fechaRegistro.strftime('%Y-%m-%d')
 
     #Creamos el registro de cara en la base de datos
-    success, data_video = createFaceRegistrationDB(face_registration)
+    success, data_video = faces_service.createFaceRegistrationDB(face_registration)
 
     #Validamos si hubo un error al crear el registro de cara
     if not success:
