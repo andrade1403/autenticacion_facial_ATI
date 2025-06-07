@@ -132,4 +132,4 @@ def getRegisterFaces():
     if not success:
         return JSONResponse(status_code = 400, content = {'message': 'Error al traer todos los usuarios con rostros registrados', 'error': data})
     
-    # return JSONResponse(status_code = 200, content = {'message': 'Usuarios registrados con rostro traidos correctamente', 'faces': data})
+    return JSONResponse(status_code = 200, content = {'message': 'Usuarios registrados con rostro traidos correctamente', 'faces': data})
