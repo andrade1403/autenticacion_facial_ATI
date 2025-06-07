@@ -131,15 +131,3 @@ def getRegisterFaces():
     
     return JSONResponse(status_code = 200, content = {'message': 'Usuarios registrados con rostro traidos correctamente', 'faces': data})
 
-@router.delete('/faces/delete')
-def deleteFaceRegister():
-    #Borramos el contenedor de rostros registrados
-    success, data = DBConnection().deleteContainer('faces_registration')
-    success, data = DBConnection().deleteContainer('users')
-
-    #Validamos si hubo un error al borrar el contenedor
-    if not success:
-        return JSONResponse(status_code = 400, content = {'message': 'Error al borrar el contenedor de rostros registrados', 'error': data})
-    
-    return JSONResponse(status_code = 200, content = {'message': 'Contenedor de rostros registrados borrado correctamente', 'data': data})
-
