@@ -143,14 +143,3 @@ def deleteFaceRegister():
     
     return JSONResponse(status_code = 200, content = {'message': 'Contenedor de rostros registrados borrado correctamente', 'data': data})
 
-@router.get('/faces/user/{user_id}')
-def getFaceRegisterByUserId(user_id: str, token = Depends(verify_token)):
-    #Traemos los registros de cara por ID de usuario
-    success, data = faces_service.getFaceRegisterByUserIdDB(user_id)
-
-    #Validamos si hubo un error al traer los registros de cara
-    if not success:
-        return JSONResponse(status_code = 400, content = {'message': f'Error al traer los registros de cara del usuario {user_id}', 'error': data})
-    
-    return JSONResponse(status_code = 200, content = {'message': f'Registros de cara del usuario {user_id} traidos correctamente', 'faces': data})
-
