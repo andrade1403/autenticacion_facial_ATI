@@ -59,7 +59,7 @@ def registerImageFace(token = Depends(verify_token), image: bytes = File(...)):
 
     #Creamos el registro de cara en la base de datos
     success, data_img = faces_service.createFaceRegistrationDB(face_registration)
-    print(data_img)
+
     #Validamos si hubo un error al crear el registro de cara
     if not success:
         return JSONResponse(status_code = 400, content = {'message': 'Error al registrar el rostro', 'error': data_img})

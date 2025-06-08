@@ -7,3 +7,4 @@ class LogIn(BaseModel):
     userId: str
     fechaLogIn: datetime = Field(default_factory = datetime.utcnow)
     resultado: bool = True
+    distancia: float
